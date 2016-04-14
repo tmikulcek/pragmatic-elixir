@@ -21,4 +21,12 @@ defmodule Lists_and_recursionTest do
   test "filter" do
     assert Enum.filter([1, 2, 3, 4], &is_even/1) == Lists_and_recursion.filter([1, 2, 3, 4], &is_even/1)
   end
+
+  test "split" do
+    assert Enum.split([1, 2, 3, 4], 3) == Lists_and_recursion.split([1, 2, 3, 4], 3)
+  end
+
+  test "split negative" do
+    assert Enum.split([1, 2, 3, 4], -1) == Lists_and_recursion.split([1, 2, 3, 4], -1)
+  end
 end
