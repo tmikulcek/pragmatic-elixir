@@ -15,7 +15,7 @@ defmodule Lists_and_recursion do
     def filter([], _fun), do: []
     def filter([head | tail], fun) do
         if fun.(head) do
-            [head|filter(tail, fun)],
+            [head|filter(tail, fun)]
         else
             filter(tail, fun)
         end
