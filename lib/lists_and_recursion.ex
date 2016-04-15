@@ -35,7 +35,7 @@ defmodule Lists_and_recursion do
     def _split([], _, acc, _), do: {acc, []}
     def _split(list, 0, acc, reverse?) when reverse?, do: {Enum.reverse(list), Enum.reverse(acc)}
     def _split(list, 0, acc, _), do: {acc, list}
-    def _split(list = [head | tail], count, acc, reverse?) do
+    def _split([head | tail], count, acc, reverse?) do
         _split(tail, count - 1, acc ++ [head], reverse?)
   end
 end
