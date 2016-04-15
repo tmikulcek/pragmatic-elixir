@@ -1,12 +1,17 @@
 defmodule Lists_and_recursionTest do
     use ExUnit.Case
+    use ExCheck
+
     import ExUnit.CaptureIO
+
     doctest PragmaticElixir
 
     def is_even(num), do: rem(num, 2) == 0
 
-    test "all? all are even" do
-        assert Enum.all?([2, 4, 6, 8], &is_even/1) == Lists_and_recursion.all?([2, 4, 6, 8], &is_even/1)
+    property :all? do
+        for_all to_check in list(int) do
+            assert Enum.all?(to_check, &is_even/1) == Lists_and_recursion.all?(to_check, &is_even/1)
+        end
     end
 
     test "all? not all are even" do
@@ -18,18 +23,15 @@ defmodule Lists_and_recursionTest do
         assert capture_io(testable_side_effects) == "1\n2\n3\n"
     end
 
-    test "filter" do
-        assert Enum.filter([1, 2, 3, 4], &is_even/1) == Lists_and_recursion.filter([1, 2, 3, 4], &is_even/1)
+    property :filter do
+        for_all to_filter in list(int) do
+            assert Enum.filter(to_filter, &is_even/1) == Lists_and_recursion.filter(to_filter, &is_even/1)
+        end
     end
 
-    test "split" do
-        to_split = [1, 2, 3, 4]
-        assert Enum.split(to_split, 3) == Lists_and_recursion.split(to_split, 3)
-        assert Enum.split(to_split, -1) == Lists_and_recursion.split(to_split, -1)
-        assert Enum.split(to_split, -2) == Lists_and_recursion.split(to_split, -2)
-        assert Enum.split(to_split, 4) == Lists_and_recursion.split(to_split, 4)
-        assert Enum.split(to_split, 5) == Lists_and_recursion.split(to_split, 5)
-        assert Enum.split(to_split, -5) == Lists_and_recursion.split(to_split, -5)
-        assert Enum.split(to_split, 0) == Lists_and_recursion.split(to_split, 0)
+    property :split do
+        for_all {to_split, count} in {list(int), int} do
+            assert Enum.split(to_split, count) == Lists_and_recursion.split(to_split, count)
+        end
     end
 end
