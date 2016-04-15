@@ -23,10 +23,13 @@ defmodule Lists_and_recursionTest do
     end
 
     test "split" do
-        assert Enum.split([1, 2, 3, 4], 3) == Lists_and_recursion.split([1, 2, 3, 4], 3)
-    end
-
-    test "split negative" do
-        assert Enum.split([1, 2, 3, 4], -1) == Lists_and_recursion.split([1, 2, 3, 4], -1)
+        to_split = [1, 2, 3, 4]
+        assert Enum.split(to_split, 3) == Lists_and_recursion.split(to_split, 3)
+        assert Enum.split(to_split, -1) == Lists_and_recursion.split(to_split, -1)
+        assert Enum.split(to_split, -2) == Lists_and_recursion.split(to_split, -2)
+        assert Enum.split(to_split, 4) == Lists_and_recursion.split(to_split, 4)
+        assert Enum.split(to_split, 5) == Lists_and_recursion.split(to_split, 5)
+        assert Enum.split(to_split, -5) == Lists_and_recursion.split(to_split, -5)
+        assert Enum.split(to_split, 0) == Lists_and_recursion.split(to_split, 0)
     end
 end
