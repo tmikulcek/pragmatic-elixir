@@ -25,17 +25,17 @@ defmodule Lists_and_recursion do
     def split(list, count), do: _split(list, count, [], true)
 
     defp _split([], _, acc, true), do: {Enum.reverse(acc), []}
-    defp _split([], _, acc, false), do: {[], acc}
     defp _split(list, 0, acc, true), do: {Enum.reverse(acc), list}
+    defp _split([], _, acc, false), do: {[], acc}
     defp _split(list, 0, acc, false), do: {Enum.reverse(list), acc}
-    defp _split([head | tail], count, acc, reverse?), do: _split(tail, count - 1, [head|acc], reverse?)
+    defp _split([head|tail], count, acc, reverse?), do: _split(tail, count - 1, [head|acc], reverse?)
 
     def take(list, count) when count > 0, do: _take(list, count, [], true)
     def take(list, count), do: _take(Enum.reverse(list), 0 - count, [], false)
 
     defp _take([], _, acc, true), do: Enum.reverse(acc)
-    defp _take([], _, acc, false), do: acc
     defp _take(_, 0, acc, true), do: Enum.reverse(acc)
+    defp _take([], _, acc, false), do: acc
     defp _take(_, 0, acc, false), do: acc
     defp _take([head|tail], count, acc, reverse?), do: _take(tail, count - 1, [head|acc], reverse?)
 end
