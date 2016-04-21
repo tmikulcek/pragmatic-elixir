@@ -26,13 +26,13 @@ defmodule Lists_and_recursionTest do
     end
 
     property :split do
-        for_all {to_split, count} in {list(any), int} do
+        for_all {to_split, count} in {list(int), int} do
             assert Enum.split(to_split, count) == Lists_and_recursion.split(to_split, count)
         end
     end
 
     property :take do
-        for_all {to_take, count} in {list(any), int} do
+        for_all {to_take, count} in {list(int), int} do
             assert Enum.take(to_take, count) == Lists_and_recursion.take(to_take, count)
         end
     end
