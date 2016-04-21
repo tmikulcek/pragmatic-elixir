@@ -36,4 +36,10 @@ defmodule Lists_and_recursionTest do
             assert Enum.take(to_take, count) == Lists_and_recursion.take(to_take, count)
         end
     end
+
+    property :flatten do
+        for_all nested in list(oneof([list(oneof([list(int), int])), int])) do
+            assert List.flatten(nested) == Lists_and_recursion.flatten(nested)
+        end
+    end
 end

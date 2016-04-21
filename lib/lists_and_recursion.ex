@@ -38,4 +38,8 @@ defmodule Lists_and_recursion do
     defp _take([], _, acc, false), do: acc
     defp _take(_, 0, acc, false), do: acc
     defp _take([head|tail], count, acc, reverse?), do: _take(tail, count - 1, [head|acc], reverse?)
+
+    def flatten([]), do: []
+    def flatten([head|tail]) when is_list(head), do: flatten(head) ++ flatten(tail)
+    def flatten([head|tail]), do: [head|flatten(tail)]
 end
