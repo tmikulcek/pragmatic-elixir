@@ -21,16 +21,10 @@ defmodule Lists_and_recursion do
         end
     end
 
-    def split([], _), do: {[], []}
-    def split(list, 0), do: {[], list}
-
-    def split(list, count) when count < 0 do
-        _split(Enum.reverse(list), 0 - count, [], false)
-    end
-
-    def split(list, count) do
-        _split(list, count, [], true)
-    end
+    #def split([], _), do: {[], []}
+    #def split(list, 0), do: {[], list}
+    def split(list, count) when count < 0, do: _split(Enum.reverse(list), 0 - count, [], false)
+    def split(list, count), do: _split(list, count, [], true)
 
     defp _split([], _, acc, reverse?) when reverse?, do: {Enum.reverse(acc), []}
     defp _split([], _, acc, _), do: {[], acc}
