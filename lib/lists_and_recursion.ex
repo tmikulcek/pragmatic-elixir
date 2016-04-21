@@ -32,21 +32,14 @@ defmodule Lists_and_recursion do
         _split(list, count, [], true)
     end
 
-    def _split([], _, acc, reverse?) when reverse?, do: {Enum.reverse(acc), []}
-    def _split([], _, acc, _), do: {[], acc}
-    def _split(list, 0, acc, reverse?) when reverse?, do: {Enum.reverse(acc), list}
-    def _split(list, 0, acc, _), do: {Enum.reverse(list), acc}
-    def _split([head | tail], count, acc, reverse?) do
-        _split(tail, count - 1, [head|acc], reverse?)
-    end
+    defp _split([], _, acc, reverse?) when reverse?, do: {Enum.reverse(acc), []}
+    defp _split([], _, acc, _), do: {[], acc}
+    defp _split(list, 0, acc, reverse?) when reverse?, do: {Enum.reverse(acc), list}
+    defp _split(list, 0, acc, _), do: {Enum.reverse(list), acc}
+    defp _split([head | tail], count, acc, reverse?), do: _split(tail, count - 1, [head|acc], reverse?)
 
-    def take([], _), do: []
-    def take(_, 0), do: []
-    def take([head|tail], count) when count > 0, do: _take(tail, count - 1, [head], true)
-    def take(list, count) do
-         [head|tail] = Enum.reverse(list)
-        _take(tail, 0 - count - 1, [head], false)
-    end
+    def take(list, count) when count > 0, do: _take(list, count, [], true)
+    def take(list, count), do: _take(Enum.reverse(list), 0 - count, [], false)
 
     defp _take([], _, acc, reverse?) when reverse?, do: Enum.reverse(acc)
     defp _take([], _, acc, _), do: acc
