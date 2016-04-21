@@ -29,7 +29,8 @@ defmodule PragmaticElixir.Mixfile do
   defp deps do
     [
         {:excheck, "~> 0.3", only: :test},
-        {:triq, github: "krestenkrab/triq", only: :test}
+        {:triq, github: "krestenkrab/triq", only: :test},
+        {:mix_test_watch, "~> 0.2", only: :dev}
     ]
   end
 end
