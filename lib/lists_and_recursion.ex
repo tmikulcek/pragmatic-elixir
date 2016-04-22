@@ -42,4 +42,12 @@ defmodule Lists_and_recursion do
     def flatten([]), do: []
     def flatten([head|tail]) when is_list(head), do: flatten(head) ++ flatten(tail)
     def flatten([head|tail]), do: [head|flatten(tail)]
+
+    def span([], _), do: []
+    def span(list, range) do
+        [start|rangeTail] = Enum.into(range, [])
+        [rangeEnd|_] = Enum.reverse(rangeTail)
+        diff = rangeEnd - start + 1
+        Enum.drop(list, start) |> take(diff)
+    end
 end
