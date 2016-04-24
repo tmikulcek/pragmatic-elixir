@@ -42,4 +42,8 @@ defmodule Lists_and_recursionTest do
             assert List.flatten(nested) == Lists_and_recursion.flatten(nested)
         end
     end
+
+    test :span do
+      assert [2,3] == Lists_and_recursion.span([1,2,3,4], 1..2)
+    end
 end
