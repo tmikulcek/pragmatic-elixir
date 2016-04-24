@@ -8,3 +8,4 @@ erl_crash.dump
 *.iml
 
 *.sublime-workspace
+*.sublime-project
